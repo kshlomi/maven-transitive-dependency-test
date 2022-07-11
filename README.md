@@ -12,7 +12,7 @@ bar
 Reproducing the issue:
 ```
  ❯ mvn clean install -am -pl ./bar
- ❯ mvn dependency:tree -pl bar
+ ❯ mvn dependency:tree -Dverbose -pl bar
 [INFO] Scanning for projects...
 [INFO]
 [INFO] --------------------------< org.example:bar >---------------------------
@@ -22,13 +22,14 @@ Reproducing the issue:
 [INFO] --- maven-dependency-plugin:2.8:tree (default-cli) @ bar ---
 [INFO] org.example:bar:jar:1.0
 [INFO] +- org.example:some-test-lib:jar:1.0:test
-[INFO] |  \- org.example:transitive:jar:1.1:compile
+[INFO] |  \- (org.example:transitive:jar:1.1:compile - scope updated from test; omitted for duplicate)
 [INFO] \- org.example:foo:jar:1.0:compile
+[INFO]    \- org.example:transitive:jar:1.1:compile
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  0.897 s
-[INFO] Finished at: 2022-07-11T16:19:38+03:00
+[INFO] Total time:  1.070 s
+[INFO] Finished at: 2022-07-11T16:27:24+03:00
 [INFO] ------------------------------------------------------------------------
 ```
 
